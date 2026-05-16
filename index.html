@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio digital</title>
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    div {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border: 1px solid #ddd;
+        padding: 70px 60px;
+        border-radius: 20px;
+        box-shadow: rgba(202, 9, 9, 0.5) 0px 3px 8px;
+        border: none;
+        animation-name: pulse;
+        animation: pulse 5s ease infinite;
+    }
+
+    @keyframes pulse {
+        0%{
+            box-shadow: rgba(255, 0, 0, 0.5) 0px 3px 8px;
+            transition: 0.3s ease-in-out;
+        }
+        25%{
+            box-shadow: rgba(0, 255, 64, 0.5) 0px 3px 8px;
+            transition: 0.3s ease-in-out;
+        }
+        50% {
+            box-shadow: rgba(0, 162, 255, 0.5) 0px 3px 8px;
+            transition: 0.3s ease-in-out;
+        }
+        100% {
+            box-shadow: rgba(216, 8, 8, 0.5) 0px 3px 8px;
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    h1 {
+        font-family: monospace;
+        font-size: 3.5rem;
+        color: rgb(255, 0, 0);
+    }
+
+    h4 {
+        text-align: center;
+        color: rgb(255, 0, 0);
+        font-family:monospace; 
+        font-size: 1rem;
+
+    }
+
+</style>
+
+<body>
+    
+    <div>
+        <h1 id="mostrar_hora "></h1>
+        <h4 id="data"></h4>
+    </div>
+
+</body>
+
+<script>
+
+    function Atualizar_minutos() {
+
+    const mostrar_hora = document.getElementById("mostrar_hora ");
+
+    const dia_atual = document.getElementById("dia_atual");
+
+    const dia = document.getElementById("data");
+
+    const hora = new Date();
+
+    let hora_Atual = hora.getHours();
+    let hora_minutos = String(hora.getMinutes()).padStart(2, "0");
+    let hora_segundos = String(hora.getSeconds()).padStart(2, "0");
+    let data_hoje = hora.getDate();
+    let mes = String(hora.getMonth() + 1).padStart(2, "0");
+    let ano_atual = hora.getFullYear();
+
+    mostrar_hora.innerHTML = `${hora_Atual}:${hora_minutos}:${hora_segundos}`;
+
+    dia.innerHTML = `${data_hoje}/${mes}/${ano_atual}`;
+}
+
+let intervalo = setInterval(Atualizar_minutos, 1000);
+
+Atualizar_minutos();
+
+
+</script>
+
+</html>
